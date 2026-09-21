@@ -18,6 +18,15 @@
 - `resolve()` — 인시던트 해결
 - `close()` — 인시던트 종료
 
+## Notification
+
+알림 전송 방식은 `NotificationSender` 인터페이스로 추상화되어 있습니다.
+
+- `EmailNotificationSender` — 이메일 알림 전송
+- `SlackNotificationSender` — Slack 알림 전송
+- 새로운 알림 채널은 `NotificationSender`를 구현해 추가할 수 있습니다.
+- `Main`에서 `SlackNotificationSender`를 이용한 간단한 전송 예제를 확인할 수 있습니다.
+
 ## 프로젝트 구조
 
 ```text
@@ -27,8 +36,12 @@ src/
 │   └── domain/
 │       ├── Incident.java
 │       ├── IncidentStatus.java
+│       ├── NotificationSender.java
+│       ├── EmailNotificationSender.java
+│       ├── SlackNotificationSender.java
 │       ├── Severity.java
-│       └── User.java
+│       ├── User.java
+│       └── Main.java
 └── test/java/
 ```
 
