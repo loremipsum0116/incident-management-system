@@ -18,6 +18,12 @@
 - `resolve()` — 인시던트 해결
 - `close()` — 인시던트 종료
 
+## Repository
+
+- `IncidentRepository`가 Incident 저장소의 CRUD 계약을 정의합니다.
+- `InMemoryIncidentRepository`는 `Map<Long, Incident>`를 이용해 메모리에 Incident를 저장합니다.
+- 전체 조회 시 저장소 내부 Collection과 분리된 새 `List<Incident>`를 반환합니다.
+
 ## 프로젝트 구조
 
 ```text
@@ -81,17 +87,17 @@ gradle build
 
 ## 현재 진행 상황
 
-> 2026-09-22 기준
+> 2026-09-23 기준
 
-- 판정: **Day 3 완료 / Day 4 진행**
-- 전체 진도율: **10% (3/30)**
+- 판정: **Day 4 완료 / Day 5 진행**
+- 전체 진도율: **13% (4/30)**
 - 현재 주차: **1주차 — Java Core + Git 기반**
 
 | 분야 | 상태 | 확인된 내용 / 다음 과제 |
 |---|---|---|
-| Java Core | 진행 중 | 도메인 객체, enum, 상태 전이, 예외 구현 완료. Collection, Generic, Stream을 프로젝트 기능으로 연결하는 작업 필요 |
+| Java Core | 진행 중 | 도메인 객체, enum, 상태 전이, 예외, Collection, equals/hashCode와 인터페이스 기반 인메모리 Repository 구현 완료. Exception 심화, Generic, Lambda, Stream 학습 필요 |
 | Git | 부분 완료 | 기능·문서 단위의 의미 있는 commit 이력 존재. branch, merge, 협업 workflow 실습 필요 |
-| Spring Backend | 미착수 | 현재 Java 애플리케이션이며 Spring Boot, Controller, Service, Repository 미구현 |
+| Spring Backend | 미착수 | 순수 Java Repository까지만 구현되어 있으며 Spring Boot, Controller, Service와 영속성 저장소는 미구현 |
 | Database | 미착수 | PostgreSQL 연결, ORM, schema/migration, ERD 미구현 |
 | Test | 미착수 | 테스트 소스와 JUnit 의존성·테스트 케이스 미구현 |
 | Linux / Network | 미착수 | 실행 환경 및 장애 진단 기록 없음 |
@@ -100,7 +106,7 @@ gradle build
 
 ### 다음 완료 기준
 
-1. Collection, Generic, Stream을 실제 도메인 코드에 적용합니다.
-2. 핵심 도메인 규칙을 JUnit 테스트로 검증합니다.
-3. 1주차 학습 내용과 회고를 문서화합니다.
-4. 이후 Spring Boot REST API와 PostgreSQL 연결 단계로 진행합니다.
+1. Exception과 custom exception을 학습하고 프로젝트의 예외 설계를 정리합니다.
+2. Generic과 Lambda를 실제 코드 흐름에 적용합니다.
+3. Stream의 filtering, mapping, grouping을 학습합니다.
+4. 핵심 도메인과 Repository 규칙을 JUnit 테스트로 검증합니다.
