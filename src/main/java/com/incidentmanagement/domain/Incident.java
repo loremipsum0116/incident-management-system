@@ -8,6 +8,11 @@ public class Incident {
     private IncidentStatus status;
     private User assignee;
 
+
+    public long getId() {
+        return id;
+    }
+
     public Incident(long id, String title, Severity severity) {
         changeSeverity(severity);
         changeTitle(title);
@@ -28,6 +33,27 @@ public class Incident {
         }
         this.title = title;
     }
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o){
+            return true;
+        }
+
+        if (!(o instanceof Incident)){
+            return false;
+        }
+
+        Incident incident = (Incident) o;
+
+        return this.id == incident.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Long.hashCode(id);
+    }
+
 
 
     public void assignTo(User user) {
@@ -60,4 +86,5 @@ public class Incident {
         }
         this.status = IncidentStatus.CLOSED;
     }
+
 }

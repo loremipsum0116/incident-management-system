@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'application'
 }
 
 group = 'com.incidentmanagement'
@@ -14,10 +13,6 @@ java {
 
 repositories {
     mavenCentral()
-}
-
-application {
-    mainClass = 'com.incidentmanagement.IncidentManagementApplication'
 }
 
 tasks.named('test') {

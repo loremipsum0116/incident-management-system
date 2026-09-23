@@ -18,38 +18,31 @@
 - `resolve()` — 인시던트 해결
 - `close()` — 인시던트 종료
 
-## Notification
-
-알림 전송 방식은 `NotificationSender` 인터페이스로 추상화되어 있습니다.
-
-- `EmailNotificationSender` — 이메일 알림 전송
-- `SlackNotificationSender` — Slack 알림 전송
-- 새로운 알림 채널은 `NotificationSender`를 구현해 추가할 수 있습니다.
-- `Main`에서 `SlackNotificationSender`를 이용한 간단한 전송 예제를 확인할 수 있습니다.
-
 ## 프로젝트 구조
 
 ```text
 src/
-├── main/java/com/incidentmanagement/
-│   ├── IncidentManagementApplication.java
-│   └── domain/
-│       ├── Incident.java
-│       ├── IncidentStatus.java
-│       ├── NotificationSender.java
-│       ├── EmailNotificationSender.java
-│       ├── SlackNotificationSender.java
-│       ├── Severity.java
-│       ├── User.java
-│       └── Main.java
-└── test/java/
+└── main/java/com/incidentmanagement/
+    ├── domain/
+    │   ├── Incident.java
+    │   ├── IncidentStatus.java
+    │   ├── Severity.java
+    │   └── User.java
+    └── repository/
+        ├── IncidentRepository.java
+        └── InMemoryIncidentRepository.java
+
+docs/
+└── learning-log.md
 ```
 
-## 실행
+## 빌드
 
 ```bash
-gradle run
+gradle build
 ```
+
+현재 단계에서는 Spring Boot나 별도의 실행용 `main` 클래스를 추가하지 않고, 프레임워크에 독립적인 Java 도메인 모델을 유지합니다.
 
 ## 최종 목표 기술 및 구현 범위
 
@@ -68,7 +61,7 @@ gradle run
 - Incident 생성, 조회, 수정, 삭제
 - Incident 상태 전이와 담당자 관리
 - Severity, User, Comment, History 모델
-- 알림 채널 추상화 및 Email/Slack 구현
+- 알림 채널 확장
 - API 명세와 요청·응답 예시
 
 ### Database & Test
@@ -88,7 +81,7 @@ gradle run
 
 ## 현재 진행 상황
 
-> 2026-09-21 기준
+> 2026-09-22 기준
 
 - 판정: **Day 3 완료 / Day 4 진행**
 - 전체 진도율: **10% (3/30)**
@@ -96,14 +89,14 @@ gradle run
 
 | 분야 | 상태 | 확인된 내용 / 다음 과제 |
 |---|---|---|
-| Java Core | 진행 중 | 도메인 객체, enum, 상태 전이, 예외, 인터페이스와 다형성 구현 완료. Collection, Generic, Stream 학습 증거 필요 |
+| Java Core | 진행 중 | 도메인 객체, enum, 상태 전이, 예외 구현 완료. Collection, Generic, Stream을 프로젝트 기능으로 연결하는 작업 필요 |
 | Git | 부분 완료 | 기능·문서 단위의 의미 있는 commit 이력 존재. branch, merge, 협업 workflow 실습 필요 |
 | Spring Backend | 미착수 | 현재 Java 애플리케이션이며 Spring Boot, Controller, Service, Repository 미구현 |
 | Database | 미착수 | PostgreSQL 연결, ORM, schema/migration, ERD 미구현 |
 | Test | 미착수 | 테스트 소스와 JUnit 의존성·테스트 케이스 미구현 |
 | Linux / Network | 미착수 | 실행 환경 및 장애 진단 기록 없음 |
 | Docker / Cloud / CI-CD | 미착수 | Dockerfile, Compose, 배포 설정, GitHub Actions workflow 없음 |
-| Documentation | 진행 중 | 도메인 규칙, 구조, 실행 방법 기록. 향후 API 명세·ERD·배포·트러블슈팅 문서 필요 |
+| Documentation | 진행 중 | 도메인 규칙, 구조, 빌드 방법과 학습 기록 작성. 향후 API 명세·ERD·배포·트러블슈팅 문서 필요 |
 
 ### 다음 완료 기준
 
